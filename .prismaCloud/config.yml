@@ -16,9 +16,9 @@ template_parameters:
   variable_files:
   - './TF/tf12_variable_files/smelks.tfvars'
   - './TF/tf12_nested_variable_files/network/smelks.tfvars'
-  variables:
-    cidr: 0.0.0.0/0
-    acl: public-read-write
+#  variables:
+#    cidr: 0.0.0.0/0
+#    acl: public-read-write
 
 # Define tags to identify your particular scan. You can use these tags to search the scan details on the Prisma Cloud.
 tags:
