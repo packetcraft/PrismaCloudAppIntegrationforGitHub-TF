@@ -381,3 +381,4 @@ resource "aws_eks_cluster" "example" {
   }
   version = "1.9.9"
 }
+
