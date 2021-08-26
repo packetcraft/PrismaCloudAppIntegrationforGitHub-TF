@@ -12,13 +12,13 @@ template_version: 0.12
 # variable_files: Specify all the custom variable_files under here. It is an array of strings.
 # variable_files: If it is standard extension(.tfvars for terraform), then this can be omitted.
 # variable_files: For a custom extension, specify the variable file path from the root of the repo.
-template_parameters:
-  variable_files:
-  - './TF/tf12_variable_files/smelks.tfvars'
-  - './TF/tf12_nested_variable_files/network/smelks.tfvars'
-  variables:
-    cidr: 0.0.0.0/0
-    acl: public-read-write
+# template_parameters:
+#  variable_files:
+#  - './TF/tf12_variable_files/smelks.tfvars'
+#  - './TF/tf12_nested_variable_files/network/smelks.tfvars'
+#  variables:
+#    cidr: 0.0.0.0/0
+#    acl: public-read-write
 
 # Define tags to identify your particular scan. You can use these tags to search the scan details on the Prisma Cloud.
 tags:
