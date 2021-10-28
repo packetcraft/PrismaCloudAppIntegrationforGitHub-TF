@@ -26,6 +26,9 @@ resource "aws_kms_key" "replica" {
 
   description             = "S3 bucket replication KMS key"
   deletion_window_in_days = 7
+  tags = {
+    yor_trace = "c4213278-c329-4255-9b93-3c159c04468b"
+  }
 }
 
 module "replica_bucket" {
