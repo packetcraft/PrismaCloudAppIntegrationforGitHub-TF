@@ -8,63 +8,65 @@ provider "aws" {
 
 variable "vpc_name" {
   description = "name of the VPC"
-  default = "tf-0.12-rvt-example-vpc"
+  default     = "tf-0.12-rvt-example-vpc"
 }
 
 variable "vpc_cidr" {
   description = "CIDR for VPC"
-  default = "172.16.0.0/16"
+  default     = "172.16.0.0/16"
 }
 
 variable "subnet_name" {
   description = "name for subnet"
-  default = "tf-0.12-rvt-example-subnet"
+  default     = "tf-0.12-rvt-example-subnet"
 }
 
 variable "subnet_cidr" {
   description = "CIDR for subnet"
-  default = "172.16.10.0/24"
+  default     = "172.16.10.0/24"
 }
 
 variable "interface_ips" {
-  type = list
+  type        = list
   description = "IP for network interface"
-  default = ["172.16.10.100"]
+  default     = ["172.16.10.100"]
 }
 
 locals {
   network_config = {
-    vpc_name = var.vpc_name
-    vpc_cidr = var.vpc_cidr
+    vpc_name    = var.vpc_name
+    vpc_cidr    = var.vpc_cidr
     subnet_name = var.subnet_name
     subnet_cidr = var.subnet_cidr
   }
 }
 
 module "network" {
-  source = "./network"
+  source         = "./network"
   network_config = local.network_config
 }
 
 resource "aws_network_interface" "rvt" {
-  subnet_id = module.network.subnet_id
+  subnet_id   = module.network.subnet_id
   private_ips = var.interface_ips
   tags = {
-    Name = "tf-0.12-rvt-example-interface"
+    Name      = "tf-0.12-rvt-example-interface"
+    yor_trace = "2638c0b6-370f-43f6-b475-3a732b4bb65b"
   }
 }
 
 resource "aws_instance" "rvt" {
-  ami = "ami-22b9a343" # us-west-2
+  ami           = "ami-22b9a343" # us-west-2
   instance_type = "t2.micro"
 
   tags = {
-    Name = "tf-0.12-rvt-example-instance"
+    Name      = "tf-0.12-rvt-example-instance"
+    yor_trace = "652ce0d3-652d-41cc-87d9-82fb62954aec"
   }
 
   network_interface {
     network_interface_id = aws_network_interface.rvt.id
-    device_index = 0
+    device_index         = 0
   }
 }
 
